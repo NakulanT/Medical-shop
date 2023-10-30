@@ -35,6 +35,11 @@ function AdminProducts() {
         key: "createdAt",
       },
       {
+        title: "NO of items",
+        dataIndex: "itemsList",
+        key: "itemsList",
+      },
+      {
         title: "Action",
         key: "action",
         render: (text, record) => (
