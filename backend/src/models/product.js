@@ -14,6 +14,10 @@ const ProductSchema = new Schema({
     type: Number,
     required: true,
   },
+  itemsList: {
+    type: Number,
+    default: null,
+  },
   photos: [String],
   createdAt: {
     type: Date,

@@ -121,11 +121,27 @@ function NewProduct() {
                         onBlur={handleBlur}
                         value={values.price}
                         disabled={isSubmitting}
-                        isInvalid={touched.description && errors.description}
+                        isInvalid={touched.price && errors.price}
                       />
                       {touched.price && errors.price && (
                         <Text mt={2} color="red.500">
                           {errors.price}
+                        </Text>
+                      )}
+                    </FormControl>
+                    <FormControl mt={4}>
+                      <FormLabel>No.of Items</FormLabel>
+                      <Input
+                        name="itemsList"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.itemsList}
+                        disabled={isSubmitting}
+                        isInvalid={touched.itemsList && errors.itemsList}
+                      />
+                      {touched.itemsList && errors.itemsList && (
+                        <Text mt={2} color="red.500">
+                          {errors.itemsList}
                         </Text>
                       )}
                     </FormControl>
