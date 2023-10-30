@@ -10,17 +10,29 @@ import {
   Divider,
   ButtonGroup,
   Button,
+  Input,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useBasket } from "../../contexts/BasketContext";
+import { useState } from "react";
 
 function Cards({ item }) {
   const { addToBasket, items } = useBasket();
+  const [quantity, setQuantity] = useState(1);
+
 
   const findBasketItem = items.find(
     (basket_item) => basket_item._id === item._id
   );
+  const plus  = () => {
+    setQuantity(quantity + 1);
+  };
+  const minus = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
 
   return (
     <Card maxW="sm" >
@@ -53,9 +65,45 @@ function Cards({ item }) {
           >
             {findBasketItem ? "Remove from Basket" : "Add to Basket"}
           </Button>
-          <Button variant="ghost" colorScheme="blue">
-            left products and  + -
-          </Button>
+
+
+
+          <div>
+            <ButtonGroup spacing="0">
+              <Button
+                variant="ghost"
+                colorScheme="blue"
+                onClick={minus}
+              >
+                -
+              </Button>
+              <Input
+                value={quantity}
+                size="sm"
+                w="16"
+                textAlign="center"
+                onChange={(e) => {
+                  const updatedQun = parseInt(e.target.value);
+                  if (!isNaN(updatedQun) && updatedQun >= 1) {
+                    setQuantity(updatedQun);
+                  }
+                }}
+              />
+              <Button
+                variant="ghost"
+                colorScheme="blue"
+                onClick={plus}
+              >
+                +
+              </Button>
+            </ButtonGroup>
+          </div>
+
+
+
+
+
+
         </ButtonGroup>
       </CardFooter>
     </Card>
