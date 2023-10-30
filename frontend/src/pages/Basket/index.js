@@ -58,7 +58,7 @@ function Basket() {
               <li key={item._id} style={({ margin: 20 }, { width: "25%" })}>
                 <Link to={`/product/${item._id}`}>
                   <Text fontSize="22">
-                    {item.title} - {item.price} $
+                    {item.title} - ₹ {item.price} 
                   </Text>
                   <Image
                     htmlWidth={300}
@@ -76,17 +76,20 @@ function Basket() {
                   colorScheme="red"
                   onClick={() => removeFromBasket(item._id)}
                 >
-                  Remove from Basket
+                  Remove from Baskettt
                 </Button>
               </li>
             ))}
           </ul>
           <Box mt="10">
-            <Text fontSize="22">Total: {total}$</Text>
+            <Text fontSize="22">Total: ₹ {total}</Text>
           </Box>
           {/* Order kısmı buradan sonra başlamaktadır. */}
           <Button onClick={onOpen} colorScheme="whatsapp" mt={4}>
             Buy now
+          </Button>
+          <Button onClick={() => emptyBasket() } colorScheme="whatsapp" mt={4} margin={30}>
+            Clear
           </Button>
 
           <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
@@ -96,7 +99,7 @@ function Basket() {
               <ModalCloseButton />
               <ModalBody pb={6}>
                 <FormControl>
-                  <FormLabel>Adress</FormLabel>
+                  <FormLabel>Address</FormLabel>
                   <Textarea
                     ref={initialRef}
                     placeholder="Adress"

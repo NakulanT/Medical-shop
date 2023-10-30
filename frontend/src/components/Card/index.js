@@ -23,7 +23,7 @@ function Cards({ item }) {
   );
 
   return (
-    <Card maxW="sm">
+    <Card maxW="sm" >
       <Link to={`/product/${item._id}`}>
         <CardBody>
           <Image
@@ -38,7 +38,7 @@ function Cards({ item }) {
             <Heading size="md">{item.title}</Heading>
             <Text>{moment(item.createdAt).format("DD/MM/YYYY")}</Text>
             <Text color="blue.600" fontSize="2xl">
-              {item.price}$
+            ₹  {item.price}
             </Text>
           </Stack>
         </CardBody>
@@ -54,7 +54,7 @@ function Cards({ item }) {
             {findBasketItem ? "Remove from Basket" : "Add to Basket"}
           </Button>
           <Button variant="ghost" colorScheme="blue">
-            Add to cart
+            left products and  + -
           </Button>
         </ButtonGroup>
       </CardFooter>
