@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import "../style.css";
 import { useQuery } from "react-query";
 import { fetchOrders } from "../../../api";
+import Title from "antd/es/skeleton/Title";
 
 function Orders() {
   const { isLoading, isError, data, error } = useQuery(
@@ -53,7 +54,7 @@ function Orders() {
             <Tr>
               <Th>Users</Th>
               <Th>Address</Th>
-              <Th>Items</Th>
+              <Th>Items ordered</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -65,7 +66,7 @@ function Orders() {
                   <Td>{item.user.email}</Td>
                 )}
                 <Td>{item.adress}</Td>
-                <Td isNumeric>{item.items.length}</Td>
+                <Td isNumeric>{item.items.map((item) => item.title , item.itemsList).join(', ')}</Td>
               </Tr>
             ))}
           </Tbody>

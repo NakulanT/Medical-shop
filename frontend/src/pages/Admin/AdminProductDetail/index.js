@@ -69,6 +69,7 @@ function AdminProductDetail() {
             description: data.description,
             price: data.price,
             photos: data.photos,
+            itemsList : data.itemsList
           }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
@@ -119,7 +120,7 @@ function AdminProductDetail() {
                       )}
                     </FormControl>
                     <FormControl mt={4}>
-                      <FormLabel>Price</FormLabel>
+                      <FormLabel>price</FormLabel>
                       <Input
                         name="price"
                         onChange={handleChange}
@@ -134,6 +135,24 @@ function AdminProductDetail() {
                         </Text>
                       )}
                     </FormControl>
+
+                    <FormControl mt={4}>
+                      <FormLabel>No of items</FormLabel>
+                      <Input
+                        name="price"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.itemsList}
+                        disabled={isSubmitting}
+                        isInvalid={touched.itemsList && errors.itemsList}
+                      />
+                      {touched.itemsList && errors.itemsList && (
+                        <Text mt={2} color="red.500">
+                          {errors.itemsListz}
+                        </Text>
+                      )}
+                    </FormControl>
+
                     <FormControl mt={4}>
                       <FormLabel>Photos</FormLabel>
                       <FieldArray

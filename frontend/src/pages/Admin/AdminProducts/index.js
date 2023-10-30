@@ -52,7 +52,6 @@ function AdminProducts() {
               onConfirm={() => {
                 deleteMutation.mutate(record._id, {
                   onSuccess: () => {
-                    alert("ürün silindi");
                   },
                 });
               }}
