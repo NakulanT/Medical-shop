@@ -7,14 +7,17 @@ const Create = async (req, res, next) => {
   const input = req.body;
   input.items = input.items ? JSON.parse(input.items) : null;
   input.itemQuantity = input.itemQuantity ? JSON.parse(input.itemQuantity) : null;
+
+/* // Find the object using object id
+  for (let i = 0; i < input.items.length; i++) {
+    input.items[i].itemsList -= input.itemQuantity;
+  }*/
   const { error } = OrderSchema.validate(input);
-  // console.log(input.itemQuantity)
+  console.log(input.itemQuantity)
   if (error) {
     return next(Boom.badRequest(error.details[0].message));
   }
-
   const { user_id } = req.payload;
-
   try {
     const order = new Order({
       user: user_id,

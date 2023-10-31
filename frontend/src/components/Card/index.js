@@ -13,7 +13,6 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import moment from "moment";
 import { useBasket } from "../../contexts/BasketContext";
 import { useState } from "react";
 
@@ -53,7 +52,7 @@ function Cards({ item }) {
           />
           <Stack mt="6" spacing="3">
             <Heading size="md">{item.title}</Heading>
-            <Text>{moment(item.createdAt).format("DD/MM/YYYY")}</Text>
+            <Text color= {item.itemsList < 6 ? "red" : "green"} fontWeight={"bold"} > product left :{item.itemsList}</Text>
             <Text color="blue.600" fontSize="2xl">
             ₹  {item.price}
             </Text>
@@ -97,7 +96,7 @@ function Cards({ item }) {
               <Button
                 variant="ghost"
                 colorScheme="blue"
-                onClick={plus}
+                onClick={quantity <= item.itemsList ? plus : "" }
               >
                 +
               </Button>
