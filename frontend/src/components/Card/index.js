@@ -21,12 +21,17 @@ function Cards({ item }) {
   const { addToBasket, items } = useBasket();
   const [quantity, setQuantity] = useState(1);
 
+  const itemsListLimit = item.itemsList; // Get the limit from productDB
+
+
 
   const findBasketItem = items.find(
     (basket_item) => basket_item._id === item._id
   );
-  const plus  = () => {
-    setQuantity(quantity + 1);
+  const plus = () => {
+    if (quantity < itemsListLimit) {
+      setQuantity(quantity + 1);
+    }
   };
   const minus = () => {
     if (quantity > 1) {
