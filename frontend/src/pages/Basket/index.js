@@ -31,12 +31,24 @@ function Basket() {
   const total = items.reduce((acc, obj) => acc + obj.price*obj.quantity, 0);
 
   const handleSubmitForm = async () => {
+    const total = items.reduce((acc, obj) => acc + obj.price*obj.quantity, 0);
+    
+    const itemQuantity = items.reduce((acc, obj) => acc + obj.quantity, 0);
+    console.log(itemQuantity)
+
     const itemIds = items.map((item) => item._id);
+    const itemQun = items.map((item) => item.quantity);
+    // console.log(itemIds)
+    console.log(itemQun)
     const input = {
       address,
+      itemQuantity:JSON.stringify(itemQun),
+      total,
       items: JSON.stringify(itemIds),
     };
-
+console.log("+++++++")
+console.log(input)
+console.log("IIIKOKP")
     await postOrder(input);
 
     emptyBasket();
@@ -102,6 +114,7 @@ function Basket() {
               <ModalBody pb={6}>
                 <FormControl>
                   <FormLabel>Address</FormLabel>
+                  <Text fontSize="14">with zipCode</Text>
                   <Textarea
                     ref={initialRef}
                     placeholder="Adress"

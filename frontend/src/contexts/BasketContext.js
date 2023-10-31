@@ -26,8 +26,29 @@ const BasketProvider = ({ children }) => {
     const filtered = items.filter((item) => item._id !== item_id);
     setItems(filtered);
   };
+  
+
+
+  const calculateTotal = () => {
+  const total = items.reduce((acc, item) => {
+    const itemTotalPrice = item.price * item.quantity;
+    console.log(`Item: ${item.title}, Quantity: ${item.quantity}`);
+    return acc + itemTotalPrice;
+  }, 0);
+  console.log(`Total Price: ${total}`);
+  return total;
+};
+
+
+
+
+
+
 
   const emptyBasket = () => setItems([]);
+
+
+
 
   const values = {
     items,
@@ -35,6 +56,7 @@ const BasketProvider = ({ children }) => {
     addToBasket,
     removeFromBasket,
     emptyBasket,
+    calculateTotal,
   };
 
   return (

@@ -16,7 +16,14 @@ import { useQuery } from "react-query";
 import { fetchOrders } from "../../../api";
 //import Title from "antd/es/skeleton/Title";
 
+// import { useBasket } from "../../contexts/BasketContext";
+// import { useBasket } from "../../../contexts/BasketContext";
+
+
+
 function Orders() {
+  // const {calculateTotal,items} = useBasket();
+
   const { isLoading, isError, data, error } = useQuery(
     "admin:orders",
     fetchOrders
@@ -49,6 +56,9 @@ function Orders() {
         <Text fontSize="2xl" p={5}>
           Orders
         </Text>
+        {/* <Text fontSize="2xl" p={5}>
+          {calculateTotal}
+        </Text> */}
 
         <Table variant="simple">
           <TableCaption>Imperial to metric conversion factors</TableCaption>
@@ -58,6 +68,8 @@ function Orders() {
               <Th>Phone_Number</Th>
               <Th>Address</Th>
               <Th textAlign="left">Items ordered</Th>
+              <Th textAlign="left">no of items</Th>
+              <Th textAlign="left">Total</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -78,6 +90,11 @@ function Orders() {
           <Td isNumeric style={{ textAlign: "left" }}>
             {item.items.map((item) => item.title).join(', ')} {/* Fix the mapping of 'item.title' */}
           </Td>
+
+
+       
+          <Td>{item.itemQuantity.join(', ')}</Td>
+          <Td>{item.total}</Td>
         </Tr>
       ))}
     </Tbody>

@@ -6,8 +6,9 @@ import OrderSchema from './validations';
 const Create = async (req, res, next) => {
   const input = req.body;
   input.items = input.items ? JSON.parse(input.items) : null;
+  input.itemQuantity = input.itemQuantity ? JSON.parse(input.itemQuantity) : null;
   const { error } = OrderSchema.validate(input);
-
+  // console.log(input.itemQuantity)
   if (error) {
     return next(Boom.badRequest(error.details[0].message));
   }
@@ -19,6 +20,8 @@ const Create = async (req, res, next) => {
       user: user_id,
       adress: input.address,
       items: input.items,
+      itemQuantity:input.itemQuantity,
+      total:input.total,
     });
 
     const savedData = await order.save();

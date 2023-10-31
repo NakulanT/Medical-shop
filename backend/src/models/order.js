@@ -11,6 +11,16 @@ const OrderSchema = new Schema({
     type: String,
     required: true,
   },
+  itemQuantity: [
+    {
+      type: Number, 
+      default: 1, 
+    },
+  ],
+  total: {
+    type: Number,
+    default:null,
+  },
   items: [
     {
       type: Schema.Types.ObjectId,
