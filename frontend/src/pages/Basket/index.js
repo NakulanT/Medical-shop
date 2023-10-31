@@ -53,15 +53,12 @@ function Basket() {
       items: JSON.stringify(itemIds),
     };
 
-// console.log("+++++++")
-// console.log(input)
-// console.log("IIIKOKP")
     await postOrder(input);
 
     emptyBasket();
     onClose();
     navigate("/");   
-    window.location.reload(); // Refresh the page
+    window.location.reload(); 
 
   };
 
