@@ -139,7 +139,7 @@ function AdminProductDetail() {
                     <FormControl mt={4}>
                       <FormLabel>No of items</FormLabel>
                       <Input
-                        name="price"
+                        name="itemsList"
                         onChange={handleChange}
                         onBlur={handleBlur}
                         value={values.itemsList}

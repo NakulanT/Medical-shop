@@ -1,4 +1,3 @@
-import "./styles.css";
 import React from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { Text, Button, Alert, AlertIcon, Box } from "@chakra-ui/react";

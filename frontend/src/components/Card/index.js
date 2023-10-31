@@ -52,7 +52,7 @@ function Cards({ item }) {
           />
           <Stack mt="6" spacing="3">
             <Heading size="md">{item.title}</Heading>
-            <Text color= {item.itemsList < 6 ? "red" : "green"} fontWeight={"bold"} > product left :{item.itemsList}</Text>
+            <Text color= {item.itemsList < 6 ? "red" : "green"} fontWeight={"bold"} > Product left :c{item.itemsList}</Text>
             <Text color="blue.600" fontSize="2xl">
             ₹  {item.price}
             </Text>
@@ -66,6 +66,7 @@ function Cards({ item }) {
             variant="solid"
             colorScheme={findBasketItem ? "red" : "whatsapp"}
             onClick={() => addToBasket(item, findBasketItem,quantity)}
+            isDisabled={item.itemsList <= 0}
           >
             {findBasketItem ? "Remove from Basket" : "Add to Basket"}
           </Button>
