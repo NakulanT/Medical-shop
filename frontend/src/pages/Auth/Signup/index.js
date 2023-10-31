@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Flex,
   Box,
@@ -16,12 +16,13 @@ import { useAuth } from "../../../contexts/AuthContext";
 
 function Signup({ history }) {
   const { login } = useAuth();
+  const [registrationSuccess, setRegistrationSuccess] = useState(false); // State variable to track successful registration
 
   const formik = useFormik({
     initialValues: {
-      username : "",
+      username: "",
       email: "",
-      phno : "",
+      phno: "",
       password: "",
       passwordConfirm: "",
     },
@@ -29,18 +30,26 @@ function Signup({ history }) {
     onSubmit: async (values, bag) => {
       try {
         const registerResponse = await fetcRegister({
-          username : values.username,
+          username: values.username,
           email: values.email,
           phno: values.phno,
           password: values.password,
         });
         login(registerResponse);
+
+        // Set registrationSuccess to true when the registration is successful
+        setRegistrationSuccess(true);
+
+        // Clear the success message after a delay (e.g., 5 seconds)
+        setTimeout(() => setRegistrationSuccess(false), 5000);
+
         history.push("/profile");
       } catch (e) {
         bag.setErrors({ general: e.response.data.message });
       }
     },
   });
+
   return (
     <div>
       <Flex align="center" width="full" justifyContent="center">
@@ -49,13 +58,16 @@ function Signup({ history }) {
             <Heading>Signup</Heading>
           </Box>
           <Box my={5}>
+            {registrationSuccess && ( // Render the success message if registrationSuccess is true
+              <Alert status="success">You have successfully registered.</Alert>
+            )}
             {formik.errors.general && (
               <Alert status="error">{formik.errors.general}</Alert>
             )}
           </Box>
           <Box my={5} textAlign="left">
             <form onSubmit={formik.handleSubmit}>
-            <FormControl>
+              <FormControl>
                 <FormLabel>User name</FormLabel>
                 <Input
                   name="username"

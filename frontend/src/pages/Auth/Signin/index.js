@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Flex,
   Box,
@@ -16,6 +16,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 
 function Signin({ history }) {
   const { login } = useAuth();
+  const [loginSuccess, setLoginSuccess] = useState(false); // State variable to track successful login
 
   const formik = useFormik({
     initialValues: {
@@ -30,12 +31,20 @@ function Signin({ history }) {
           password: values.password,
         });
         login(loginResponse);
+
+        // Set loginSuccess to true when the login is successful
+        setLoginSuccess(true);
+
+        // Clear the success message after a delay (e.g., 5 seconds)
+        setTimeout(() => setLoginSuccess(false), 5000);
+
         history.push("/profile");
       } catch (e) {
         bag.setErrors({ general: e.response.data.message });
       }
     },
   });
+
   return (
     <div>
       <Flex align="center" width="full" justifyContent="center">
@@ -44,6 +53,9 @@ function Signin({ history }) {
             <Heading>Signin</Heading>
           </Box>
           <Box my={5}>
+            {loginSuccess && ( // Render the success message if loginSuccess is true
+              <Alert status="success">You have successfully logged in.</Alert>
+            )}
             {formik.errors.general && (
               <Alert status="error">{formik.errors.general}</Alert>
             )}
