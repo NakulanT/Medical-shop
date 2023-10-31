@@ -36,6 +36,8 @@ function Profile() {
             Profile
           </Text>
           <Box mt={4}>
+          <Text fontSize={20}>username: {user.username}</Text>
+          <Text fontSize={20}>phonenumber: {user.phno}</Text>
             <Text fontSize={20}>email: {user.email}</Text>
             <Text fontSize={20}>role: {user.role}</Text>
           </Box>
