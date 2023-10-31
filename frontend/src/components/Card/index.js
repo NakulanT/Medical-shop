@@ -61,7 +61,7 @@ function Cards({ item }) {
           <Button
             variant="solid"
             colorScheme={findBasketItem ? "red" : "whatsapp"}
-            onClick={() => addToBasket(item, findBasketItem)}
+            onClick={() => addToBasket(item, findBasketItem,quantity)}
           >
             {findBasketItem ? "Remove from Basket" : "Add to Basket"}
           </Button>

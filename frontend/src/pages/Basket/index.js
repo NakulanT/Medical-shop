@@ -28,7 +28,7 @@ function Basket() {
   const initialRef = useRef(null);
 
   const { items, removeFromBasket, emptyBasket } = useBasket();
-  const total = items.reduce((acc, obj) => acc + obj.price, 0);
+  const total = items.reduce((acc, obj) => acc + obj.price*obj.quantity, 0);
 
   const handleSubmitForm = async () => {
     const itemIds = items.map((item) => item._id);
@@ -60,10 +60,13 @@ function Basket() {
                   <Text fontSize="22">
                     {item.title} - ₹ {item.price} 
                   </Text>
+                  <Text fontSize="22">
+                    No of items- ₹ {item.quantity} 
+                  </Text>
                   <Image
                     htmlWidth={300}
                     loading="lazy"
-                    src={item.photos[0]}
+                    src={item.photos}
                     alt="basket item"
                     boxSize={250}
                     objectFit="cover"

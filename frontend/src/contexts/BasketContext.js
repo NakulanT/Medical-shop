@@ -6,14 +6,16 @@ const defaultBasket = JSON.parse(localStorage.getItem("basket")) || [];
 
 const BasketProvider = ({ children }) => {
   const [items, setItems] = useState(defaultBasket);
+  console.log("dsds",items)
 
   useEffect(() => {
     localStorage.setItem("basket", JSON.stringify(items));
   }, [items]);
 
-  const addToBasket = (data, findBasketItem) => {
+  const addToBasket = (data, findBasketItem, quantity) => {
     if (!findBasketItem) {
-      return setItems((items) => [data, ...items]);
+      const itemWithQuantity = { ...data, quantity };
+      return setItems((items) => [...items, itemWithQuantity]);
     }
 
     const filtered = items.filter((item) => item._id !== findBasketItem._id);
