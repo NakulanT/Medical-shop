@@ -55,7 +55,7 @@ function Basket() {
         <>
           <ul style={{ listStyleType: "decimal", display: "flex", flexWrap: "wrap" }}>
             {items.map((item) => (
-              <li key={item._id} style={{ margin: 20, width: "30%", flex: "1 0 calc(30% - 40px)" }}>
+              <li key={item._id} style={{ margin: 20, width: "30%", flex: "1 0 calc(40% - 40px)" }}>
                 <Link to={`/product/${item._id}`}>
                   <Text fontSize="22">
                     {item.title} - ₹ {item.price} 
