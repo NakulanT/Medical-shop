@@ -69,7 +69,6 @@ function Orders() {
               <Th>Address</Th>
               <Th textAlign="left">Items ordered</Th>
               <Th textAlign="left">no of items</Th>
-              <Th textAlign="left">Total</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -87,13 +86,14 @@ function Orders() {
             </>
           )}
           <Td>{item.adress}</Td>
-          <Td isNumeric style={{ textAlign: "left" }}>
+            <Td>
             {item.items.map((item) => item.title).join(', ')} {/* Fix the mapping of 'item.title' */}
           </Td>
 
 
        
           <Td>{item.itemQuantity.join(', ')}</Td>
+
           <Td>{item.total}</Td>
         </Tr>
       ))}
