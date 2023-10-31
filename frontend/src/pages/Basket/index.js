@@ -84,7 +84,6 @@ function Basket() {
           <Box mt="10">
             <Text fontSize="22">Total: ₹ {total}</Text>
           </Box>
-          {/* Order kısmı buradan sonra başlamaktadır. */}
           <Button onClick={onOpen} colorScheme="whatsapp" mt={4}>
             Buy now
           </Button>

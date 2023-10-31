@@ -9,13 +9,14 @@ import {
 } from "../../helpers/jwt";
 
 // validations
-import ValidationSchema from "./validations";
+import { registrationSchema, loginSchema } from "./validations";
 import redis from "../../clients/redis";
 
 const Register = async (req, res, next) => {
+	console.log(req);
 	const input = req.body;
 
-	const { error } = ValidationSchema.validate(input);
+	const { error } = registrationSchema.validate(input);
 
 	if (error) {
 		return next(Boom.badRequest(error.details[0].message));
@@ -31,7 +32,6 @@ const Register = async (req, res, next) => {
 		const user = new User(input);
 		const data = await user.save();
 		const userData = data.toObject();
-
 		delete userData.password;
 		delete userData.__v;
 
@@ -54,7 +54,7 @@ const Register = async (req, res, next) => {
 const Login = async (req, res, next) => {
 	const input = req.body;
 
-	const { error } = ValidationSchema.validate(input);
+	const { error } = loginSchema.validate(input);
 
 	if (error) {
 		return next(Boom.badRequest(error.details[0].message));

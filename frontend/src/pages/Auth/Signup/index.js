@@ -19,7 +19,9 @@ function Signup({ history }) {
 
   const formik = useFormik({
     initialValues: {
+      username : "",
       email: "",
+      phno : "",
       password: "",
       passwordConfirm: "",
     },
@@ -27,7 +29,9 @@ function Signup({ history }) {
     onSubmit: async (values, bag) => {
       try {
         const registerResponse = await fetcRegister({
+          username : values.username,
           email: values.email,
+          phno: values.phno,
           password: values.password,
         });
         login(registerResponse);
@@ -51,6 +55,17 @@ function Signup({ history }) {
           </Box>
           <Box my={5} textAlign="left">
             <form onSubmit={formik.handleSubmit}>
+            <FormControl>
+                <FormLabel>User name</FormLabel>
+                <Input
+                  name="username"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.username}
+                  isInvalid={formik.touched.username && formik.errors.username}
+                />
+              </FormControl>
+
               <FormControl>
                 <FormLabel>E-mail</FormLabel>
                 <Input
@@ -59,6 +74,17 @@ function Signup({ history }) {
                   onBlur={formik.handleBlur}
                   value={formik.values.email}
                   isInvalid={formik.touched.email && formik.errors.email}
+                />
+              </FormControl>
+
+              <FormControl>
+                <FormLabel>Phone number</FormLabel>
+                <Input
+                  name="phno"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.phno}
+                  isInvalid={formik.touched.phno && formik.errors.phno}
                 />
               </FormControl>
 

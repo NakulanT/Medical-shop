@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import "../style.css";
 import { useQuery } from "react-query";
 import { fetchOrders } from "../../../api";
-import Title from "antd/es/skeleton/Title";
+//import Title from "antd/es/skeleton/Title";
 
 function Orders() {
   const { isLoading, isError, data, error } = useQuery(
@@ -27,6 +27,8 @@ function Orders() {
   if (isError) {
     return <div>Error {error.message}</div>;
   }
+
+  const reversedData = data.slice().reverse();
   console.log(data);
   return (
     <div>
@@ -52,24 +54,33 @@ function Orders() {
           <TableCaption>Imperial to metric conversion factors</TableCaption>
           <Thead>
             <Tr>
-              <Th>Users</Th>
+              <Th>User_Name</Th>
+              <Th>Phone_Number</Th>
               <Th>Address</Th>
-              <Th>Items ordered</Th>
+              <Th textAlign="left">Items ordered</Th>
             </Tr>
           </Thead>
           <Tbody>
-            {data.map((item) => (
-              <Tr key={item._id}>
-                {item.user === null ? (
-                  <Td>No Name</Td>
-                ) : (
-                  <Td>{item.user.email}</Td>
-                )}
-                <Td>{item.adress}</Td>
-                <Td isNumeric>{item.items.map((item) => item.title , item.itemsList).join(', ')}</Td>
-              </Tr>
-            ))}
-          </Tbody>
+      {reversedData.map((item) => (
+        <Tr key={item._id}>
+          {item.user === null ? (
+            <>
+              <Td>No Name</Td>
+              <Td>No Username</Td> {/* Add a default value for username */}
+            </>
+          ) : (
+            <>
+              <Td>{item.user.username}</Td>
+              <Td>{item.user.phno}</Td>
+            </>
+          )}
+          <Td>{item.adress}</Td>
+          <Td isNumeric style={{ textAlign: "left" }}>
+            {item.items.map((item) => item.title).join(', ')} {/* Fix the mapping of 'item.title' */}
+          </Td>
+        </Tr>
+      ))}
+    </Tbody>
         </Table>
       </Box>
     </div>
