@@ -1,17 +1,35 @@
-import User from '../../models/user';
 import Order from '../../models/order';
 import Boom from 'boom';
 import OrderSchema from './validations';
+import Product from '../../models/product'; // Import the Product model
 
 const Create = async (req, res, next) => {
   const input = req.body;
   input.items = input.items ? JSON.parse(input.items) : null;
   input.itemQuantity = input.itemQuantity ? JSON.parse(input.itemQuantity) : null;
 
-/* // Find the object using object id
   for (let i = 0; i < input.items.length; i++) {
-    input.items[i].itemsList -= input.itemQuantity;
-  }*/
+    await findProductById(input.items[i], input.itemQuantity[i]);
+  }
+
+  async function findProductById(productId, itemQuantity) {
+    try {
+      // Use the Product model to query the "products" collection
+      const product = await Product.findOne({ _id: productId }).exec();
+      console.log(product);
+
+      if (product) {
+        product.itemsList -= itemQuantity;
+        console.log(product);
+        await product.save();
+      } else {
+        console.log('Product not found.');
+      }
+    } catch (error) {
+      console.error('Error finding/updating product:', error);
+    }
+  }
+   
   const { error } = OrderSchema.validate(input);
   console.log(input.itemQuantity)
   if (error) {
