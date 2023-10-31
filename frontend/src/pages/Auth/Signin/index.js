@@ -13,8 +13,11 @@ import { useFormik } from "formik";
 import validationSchema from "./validations";
 import { fetchLogin } from "../../../api";
 import { useAuth } from "../../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom"; 
+
 
 function Signin({ history }) {
+  const navigate = useNavigate(); 
   const { login } = useAuth();
   const [loginSuccess, setLoginSuccess] = useState(false); // State variable to track successful login
 
@@ -37,6 +40,8 @@ function Signin({ history }) {
 
         // Clear the success message after a delay (e.g., 5 seconds)
         setTimeout(() => setLoginSuccess(false), 5000);
+        navigate("/");
+
 
         history.push("/profile");
       } catch (e) {

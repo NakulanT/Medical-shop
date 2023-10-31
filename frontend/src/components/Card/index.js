@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Card,
   Text,
@@ -19,14 +20,33 @@ import { useState } from "react";
 function Cards({ item }) {
   const { addToBasket, items } = useBasket();
   const [quantity, setQuantity] = useState(1);
+  // const [productData, setProductData] = useState(null);
 
-  const itemsListLimit = item.itemsList; // Get the limit from productDB
+
+  const itemsListLimit = item.itemsList; 
 
 
 
   const findBasketItem = items.find(
     (basket_item) => basket_item._id === item._id
   );
+
+  // this useEffectss
+  // useEffect(() => {
+  //   getProductData(item._id).then((data) => setProductData(data));
+  // }, [item._id]);
+
+  // const plus = () => {
+  //   setQuantity(quantity + 1);
+  //   updateItemsList(item._id, productData.itemsList + 1);
+  // };
+  // const minus = () => {
+  //   if (quantity > 1) {
+  //     setQuantity(quantity - 1);
+  //     updateItemsList(item._id, productData.itemsList - 1);
+  //   }
+  // };
+  // this useEffectss
   const plus = () => {
     if (quantity < itemsListLimit) {
       setQuantity(quantity + 1);
@@ -52,7 +72,9 @@ function Cards({ item }) {
           />
           <Stack mt="6" spacing="3">
             <Heading size="md">{item.title}</Heading>
-            <Text color= {item.itemsList < 6 ? "red" : "green"} fontWeight={"bold"} > Product left :c{item.itemsList}</Text>
+
+            <Text color= {item.itemsList < 6 ? "red" : "green"} fontWeight={"bold"} > 
+            product left : {item.itemsList}</Text>
             <Text color="blue.600" fontSize="2xl">
             ₹  {item.price}
             </Text>
