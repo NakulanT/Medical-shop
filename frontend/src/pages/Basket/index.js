@@ -21,11 +21,15 @@ import {
 } from "@chakra-ui/react";
 import { useBasket } from "../../contexts/BasketContext";
 import { postOrder } from "../../api.js";
+import { useNavigate } from "react-router-dom";
+
 
 function Basket() {
   const [address, setAddress] = useState();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = useRef(null);
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
 
   const { items, removeFromBasket, emptyBasket } = useBasket();
   const total = items.reduce((acc, obj) => acc + obj.price * obj.quantity, 0);
@@ -33,26 +37,32 @@ function Basket() {
   const handleSubmitForm = async () => {
     const total = items.reduce((acc, obj) => acc + obj.price*obj.quantity, 0);
     
-    const itemQuantity = items.reduce((acc, obj) => acc + obj.quantity, 0);
-    console.log(itemQuantity)
+    // const itemQuantity = items.reduce((acc, obj) => acc + obj.quantity, 0);
+    // console.log("+++",itemQuantity)
 
     const itemIds = items.map((item) => item._id);
     const itemQun = items.map((item) => item.quantity);
     // console.log(itemIds)
-    console.log(itemQun)
+    console.log("_____----",itemQun)
+
+
     const input = {
       address,
       itemQuantity:JSON.stringify(itemQun),
       total,
       items: JSON.stringify(itemIds),
     };
-console.log("+++++++")
-console.log(input)
-console.log("IIIKOKP")
+
+// console.log("+++++++")
+// console.log(input)
+// console.log("IIIKOKP")
     await postOrder(input);
 
     emptyBasket();
     onClose();
+    navigate("/");   
+    window.location.reload(); // Refresh the page
+
   };
 
   return (
