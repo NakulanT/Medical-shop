@@ -28,7 +28,7 @@ function Basket() {
   const initialRef = useRef(null);
 
   const { items, removeFromBasket, emptyBasket } = useBasket();
-  const total = items.reduce((acc, obj) => acc + obj.price*obj.quantity, 0);
+  const total = items.reduce((acc, obj) => acc + obj.price * obj.quantity, 0);
 
   const handleSubmitForm = async () => {
     const total = items.reduce((acc, obj) => acc + obj.price*obj.quantity, 0);
@@ -65,9 +65,9 @@ console.log("IIIKOKP")
       )}
       {items.length > 0 && (
         <>
-          <ul style={({ listStyleType: "decimal" }, { display: "flex" })}>
+          <ul style={{ listStyleType: "decimal", display: "flex", flexWrap: "wrap" }}>
             {items.map((item) => (
-              <li key={item._id} style={({ margin: 20 }, { width: "25%" })}>
+              <li key={item._id} style={{ margin: 20, width: "30%", flex: "1 0 calc(40% - 40px)" }}>
                 <Link to={`/product/${item._id}`}>
                   <Text fontSize="22">
                     {item.title} - ₹ {item.price} 
@@ -91,7 +91,7 @@ console.log("IIIKOKP")
                   colorScheme="red"
                   onClick={() => removeFromBasket(item._id)}
                 >
-                  Remove from Baskettt
+                  Remove from Basket
                 </Button>
               </li>
             ))}
@@ -102,7 +102,7 @@ console.log("IIIKOKP")
           <Button onClick={onOpen} colorScheme="whatsapp" mt={4}>
             Buy now
           </Button>
-          <Button onClick={() => emptyBasket() } colorScheme="whatsapp" mt={4} margin={30}>
+          <Button onClick={() => emptyBasket()} colorScheme="whatsapp" mt={4} margin={30}>
             Clear
           </Button>
 
@@ -117,7 +117,7 @@ console.log("IIIKOKP")
                   <Text fontSize="14">with zipCode</Text>
                   <Textarea
                     ref={initialRef}
-                    placeholder="Adress"
+                    placeholder="Address"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                   />

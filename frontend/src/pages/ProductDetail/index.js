@@ -50,16 +50,17 @@ function ProductDetail() {
               {data.description}
             </Text>
             <Text color="blue.600" fontSize="2xl">
-            ₹ {data.price}
+              {data.price}$
             </Text>
           </CardBody>
 
           <CardFooter>
             <Button
               variant="solid"
-              colorScheme="whatsapp"
+              colorScheme={findBasketItem ? "red" : "whatsapp"}
               onClick={() => addToBasket(data, findBasketItem)}
-            > Add to Basket
+            >
+              {findBasketItem ? "Remove from basket" : "Add to Basket"}
             </Button>
           </CardFooter>
         </Stack>
