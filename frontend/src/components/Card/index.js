@@ -73,7 +73,7 @@ function Cards({ item }) {
           <Stack mt="6" spacing="3">
             <Heading size="md" fontWeight="bold" fontStyle="oblique" >{item.title}</Heading>
 
-            <Text color= {item.itemsList < 6 ? "red" : "green"} fontWeight={"bold"} fontStyle="oblique" > 
+            <Text color= {item.itemsList < 6 ? "red" : "#22C35E"} fontWeight={"bold"} fontStyle="oblique" > 
             Product left : {item.itemsList}</Text>
             <Text color="black" fontSize="2xl" fontWeight="bold">
             ₹  {item.price}

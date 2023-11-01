@@ -123,12 +123,10 @@ function Basket() {
           <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader>Create your account</ModalHeader>
               <ModalCloseButton />
               <ModalBody pb={6}>
                 <FormControl>
-                  <FormLabel>Address</FormLabel>
-                  <Text fontSize="14">with zipCode</Text>
+                  <FormLabel fontStyle="oblique" fontWeight= "bold">Address</FormLabel>
                   <Textarea
                     ref={initialRef}
                     placeholder="Address"
