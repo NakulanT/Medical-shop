@@ -14,8 +14,9 @@
   font-weight: bold;
   font-size: 30px;
   font-family: Helvetica, sans-serif;
+  font-style: oblique; /* Use "font-style" for oblique style */
   padding-left: 30px;
-  color : #25D366;
+  color: #25D366;
 }
 .nav .left .menu {
   display: flex;

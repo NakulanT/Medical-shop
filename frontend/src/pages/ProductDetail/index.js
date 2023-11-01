@@ -5,12 +5,13 @@ import { fetchProduct } from "../../api";
 import ImageGallery from "react-image-gallery";
 import {
   Card,
-  Stack,
+  Flex, // Import the Flex component from Chakra UI
   Heading,
   Text,
   Button,
-  CardBody,
   CardFooter,
+  Stack,
+  CardBody,
 } from "@chakra-ui/react";
 import { useBasket } from "../../contexts/BasketContext";
 
@@ -44,24 +45,35 @@ function ProductDetail() {
 
         <Stack>
           <CardBody>
-            <Heading size="md">{data.title}</Heading>
+            <Flex
+              direction="column"
+              alignItems="center" // Center align the content vertically
+              justifyContent="center" // Center align the content horizontally
+              textAlign="center" // Center align text within the Flex container
+            >
+              <Heading size="md" fontWeight="bold" fontStyle="oblique">
+                {data.title}
+              </Heading>
 
-            <Text maxWidth={400} py="2">
-              {data.description}
-            </Text>
-            <Text color="blue.600" fontSize="2xl">
-              {data.price}$
-            </Text>
+              <Text maxWidth={400} py="2">
+                {data.description}
+              </Text>
+              <Text color="black" fontSize="2xl" fontWeight="bold">
+                ₹ {data.price}
+              </Text>
+            </Flex>
           </CardBody>
 
           <CardFooter>
-            <Button
-              variant="solid"
-              colorScheme={findBasketItem ? "red" : "whatsapp"}
-              onClick={() => addToBasket(data, findBasketItem)}
-            >
-              {findBasketItem ? "Remove from basket" : "Add to Basket"}
-            </Button>
+            <Flex justifyContent="center"> {/* Center align the button */}
+              <Button
+                variant="solid"
+                colorScheme={findBasketItem ? "red" : "whatsapp"}
+                onClick={() => addToBasket(data, findBasketItem)}
+              >
+                {findBasketItem ? "Remove from basket" : "Add to Basket"}
+              </Button>
+            </Flex>
           </CardFooter>
         </Stack>
       </Card>
@@ -70,3 +82,4 @@ function ProductDetail() {
 }
 
 export default ProductDetail;
+

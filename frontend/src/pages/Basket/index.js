@@ -18,6 +18,7 @@ import {
   FormLabel,
   useDisclosure,
   Textarea,
+  Flex,
 } from "@chakra-ui/react";
 import { useBasket } from "../../contexts/BasketContext";
 import { postOrder } from "../../api.js";
@@ -70,18 +71,34 @@ function Basket() {
           You have not any items in your basket.
         </Alert>
       )}
+
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+  <Box mt="10" p="4" bg="gray.200" borderRadius="md" textAlign="center">
+    <Text fontSize="32" fontWeight="bold" fontStyle="oblique">
+      Total: ₹ {total}
+    </Text>
+  </Box>
+  <Flex justifyContent="space-between" mt="4">
+    <Button onClick={() => emptyBasket()} colorScheme="whatsapp">
+      Clear
+    </Button>
+    <Button onClick={onOpen} colorScheme="whatsapp" ml="4">
+      Buy now
+    </Button>
+  </Flex>
+</div>
+
+
       {items.length > 0 && (
         <>
           <ul style={{ listStyleType: "decimal", display: "flex", flexWrap: "wrap" }}>
             {items.map((item) => (
-              <li key={item._id} style={{ margin: 20, width: "30%", flex: "1 0 calc(40% - 40px)" }}>
+              <li key={item._id} style={{align: "center", margin: 20, width: "50%", flex: "1 0 calc(20% - 20px)" }}>
                 <Link to={`/product/${item._id}`}>
-                  <Text fontSize="22">
-                    {item.title} - ₹ {item.price} 
+                  <Text fontSize="22" fontWeight="bold" fontStyle="oblique">
+                    {item.title} - ₹{item.price} x {item.quantity}
                   </Text>
-                  <Text fontSize="22">
-                    No of items- ₹ {item.quantity} 
-                  </Text>
+                  <br></br>
                   <Image
                     htmlWidth={300}
                     loading="lazy"
@@ -103,16 +120,6 @@ function Basket() {
               </li>
             ))}
           </ul>
-          <Box mt="10">
-            <Text fontSize="22">Total: ₹ {total}</Text>
-          </Box>
-          <Button onClick={onOpen} colorScheme="whatsapp" mt={4}>
-            Buy now
-          </Button>
-          <Button onClick={() => emptyBasket()} colorScheme="whatsapp" mt={4} margin={30}>
-            Clear
-          </Button>
-
           <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>

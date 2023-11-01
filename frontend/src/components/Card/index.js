@@ -59,7 +59,7 @@ function Cards({ item }) {
   };
 
   return (
-    <Card maxW="sm" >
+    <Card maxW="sm" margin={10}>
       <Link to={`/product/${item._id}`}>
         <CardBody>
           <Image
@@ -71,11 +71,11 @@ function Cards({ item }) {
             objectFit="cover"
           />
           <Stack mt="6" spacing="3">
-            <Heading size="md">{item.title}</Heading>
+            <Heading size="md" fontWeight="bold" fontStyle="oblique" >{item.title}</Heading>
 
-            <Text color= {item.itemsList < 6 ? "red" : "green"} fontWeight={"bold"} > 
-            product left : {item.itemsList}</Text>
-            <Text color="blue.600" fontSize="2xl">
+            <Text color= {item.itemsList < 6 ? "red" : "green"} fontWeight={"bold"} fontStyle="oblique" > 
+            Product left : {item.itemsList}</Text>
+            <Text color="black" fontSize="2xl" fontWeight="bold">
             ₹  {item.price}
             </Text>
           </Stack>
@@ -125,12 +125,6 @@ function Cards({ item }) {
               </Button>
             </ButtonGroup>
           </div>
-
-
-
-
-
-
         </ButtonGroup>
       </CardFooter>
     </Card>

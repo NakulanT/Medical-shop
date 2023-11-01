@@ -13,7 +13,7 @@ function Navbar() {
     <nav className={styles.nav}>
       <div className={styles.left}>
         <div className={styles.logo}>
-          <Link to="/"> ⚕ Arashi Medicals</Link>
+          <Link to="/" > ⚕ Arashi Medicals</Link>
         </div>
         <ul className={styles.menu}>
           <li>

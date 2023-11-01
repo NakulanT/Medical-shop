@@ -1,6 +1,6 @@
 import React from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import { Text, Button, Alert, AlertIcon, Box } from "@chakra-ui/react";
+import { Text, Button, Alert, AlertIcon, Box, Heading, Center ,Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 function Profile() {
@@ -9,54 +9,64 @@ function Profile() {
   const handleLogout = async () => {
     logout();
   };
-
   return (
-    <div>
-      <div className="profile-container">
+    <Center h="50vh">
+      <Box
+        p={6}
+        maxW="600px"
+        border="1px solid #E2E8F0"
+        borderRadius="lg"
+        bg="white"
+        color="gray.800" // Text color
+        shadow="lg"
+        textAlign="center"
+      >
         {loggedIn === false && (
-          <div className="not-logged-in">
-            <Alert status="warning">
-              <AlertIcon />
+          <Box>
+            <Alert status="warning" bg="yellow.100" color="yellow.800">
+              <AlertIcon color="yellow.500" />
               You are not logged in. Please login and try again.
             </Alert>
-            <Link to="/signin">
-              <Button mt={4} colorScheme="whatsapp" variant="solid">
-                Login
-              </Button>
-            </Link>
-            <Link to="/signup">
-              <Button mt={4} ml={4} colorScheme="facebook" variant="solid">
-                Register
-              </Button>
-            </Link>
-          </div>
+            <Flex mt={4}>
+              <Link to="/signin">
+                <Button colorScheme="blue" variant="solid">
+                  Login
+                </Button>
+              </Link>
+              <Link to="/signup">
+                <Button ml={4} colorScheme="green" variant="solid">
+                  Register
+                </Button>
+              </Link>
+            </Flex>
+          </Box>
         )}
         {loggedIn === true && (
-          <div className="logged-in">
-            <Text fontSize={28} fontWeight={700}>
+          <Box>
+            <Heading as="h1" fontSize="2xl" fontWeight="bold" color= "whatsapp.500">
               Profile
-            </Text>
+            </Heading>
             <Box mt={4}>
-              <Text fontSize={20}>Username: {user.username}</Text>
-              <Text fontSize={20}>Phone Number: {user.phno}</Text>
-              <Text fontSize={20}>Email: {user.email}</Text>
-              <Text fontSize={20}>Role: {user.role}</Text>
+              <Text fontSize="lg" textAlign= "left">Username: <span style={{ fontWeight: "bold" }}>{user.username}</span></Text>
+              <Text fontSize="lg" textAlign= "left">Phone Number: <span style={{ fontWeight: "bold" }}>{user.phno}</span></Text>
+              <Text fontSize="lg" textAlign= "left">Email: <span style={{ fontWeight: "bold" }}>{user.email}</span></Text>
+              <Text fontSize="lg" textAlign= "left">Role: <span style={{ fontWeight: "bold" }}>{user.role}</span></Text>
             </Box>
-            <br />
-            <br />
             <Link to="/">
               <Button
-                colorScheme="pink"
+                mt={4}
+                colorScheme="whatsapp"
                 variant="solid"
                 onClick={handleLogout}
+                isFullWidth
               >
                 Logout
               </Button>
             </Link>
-          </div>
+          </Box>
         )}
-      </div>
-    </div>
+      </Box>
+    </Center>
   );
 }
 
