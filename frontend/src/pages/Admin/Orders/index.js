@@ -64,6 +64,7 @@ function Orders() {
           <TableCaption>Imperial to metric conversion factors</TableCaption>
           <Thead>
             <Tr>
+              <Th>MONTH / DATE / YEAR</Th>
               <Th>User_Name</Th>
               <Th>Phone_Number</Th>
               <Th>Address</Th>
@@ -81,6 +82,7 @@ function Orders() {
             </>
           ) : (
             <>
+              <Td>{(new Date(item.createdAt)).toLocaleDateString('en-US')}</Td>
               <Td>{item.user.username}</Td>
               <Td>{item.user.phno}</Td>
             </>

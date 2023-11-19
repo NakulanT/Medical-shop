@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./style.module.css";
 import { Link } from "react-router-dom";
-import { Button } from "@chakra-ui/react";
+import { Button, Tooltip } from "@chakra-ui/react";
 import { useAuth } from "../../contexts/AuthContext";
 import { useBasket } from "../../contexts/BasketContext";
 
@@ -9,11 +9,16 @@ function Navbar() {
   const { loggedIn, user } = useAuth();
   const { items } = useBasket();
 
+  const contactInfo = {
+    number: "6382426090",
+    email: "arashi@gmail.com",
+  };
+
   return (
     <nav className={styles.nav}>
       <div className={styles.left}>
         <div className={styles.logo}>
-          <Link to="/" > ⚕ Arashi Medicals</Link>
+          <Link to="/">⚕ Arashi Medicals</Link>
         </div>
         <ul className={styles.menu}>
           <li>
@@ -42,6 +47,12 @@ function Navbar() {
               </Link>
             )}
 
+            <Tooltip
+              label={`📞: ${contactInfo.number}\n \n∼ 📧: ${contactInfo.email}`}
+              placement="bottom-start" // You can try different placement values
+            >
+              <Button colorScheme="pink" variant="ghost" >Help</Button>
+            </Tooltip>
             {user?.role === "admin" && (
               <Link to="/admin">
                 <Button colorScheme="pink" variant="ghost">
